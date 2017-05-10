@@ -1,0 +1,61 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NotificationListener\"><param name=\"android-package\" value=\"net.coconauts.notificationListener.NotificationCommands\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest/application": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.BIND_NOTIFICATION_LISTENER_SERVICE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:name=\"net.coconauts.notificationListener.NotificationService\" android:permission=\"android.permission.BIND_NOTIFICATION_LISTENER_SERVICE\"><intent-filter><action android:name=\"android.service.notification.NotificationListenerService\" /></intent-filter></service>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "de.campusradiokiel.twiwa.capture"
+        },
+        "net.coconauts.notification-listener": {
+            "PACKAGE_NAME": "de.campusradiokiel.twiwa.capture"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "id": "net.coconauts.notification-listener.NotificationListener",
+            "file": "plugins/net.coconauts.notification-listener/www/notification-listener.js",
+            "pluginId": "net.coconauts.notification-listener",
+            "clobbers": [
+                "notificationListener"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-whitelist": "1.3.2",
+        "net.coconauts.notification-listener": "0.0.1"
+    }
+}
