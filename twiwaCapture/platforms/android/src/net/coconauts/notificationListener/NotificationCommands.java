@@ -13,6 +13,8 @@ import android.os.Bundle;
 
 public class NotificationCommands extends CordovaPlugin {
 
+    NotificationService ns = new NotificationService();
+
     private static final String TAG = "NotificationCommands";
 
     private static final String LISTEN = "listen";

@@ -27,20 +27,36 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
+        app.pushEvent('Device ready', 'Connection established', 'information');
+        app.pushEvent('NotificationListener', JSON.stringify(notificationListener), 'information');
+	      notificationListener.listen(function(n){
+          app.pushEvent('Notification', JSON.stringify(n, null, '\t'), 'data');
+        }, function(e){
+          app.pushEvent("Notification Error ", e, 'error');
+        });
     },
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    pushEvent: function(title, content, style){
+      var eventContainer = document.getElementById('event-container');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+      var newEvent = document.createElement('div');
+      newEvent.classList.add('event');
+      newEvent.classList.add(style);
 
-        console.log('Received Event: ' + id);
+      var eventHeader = document.createElement('div');
+      eventHeader.classList.add('header');
+      eventHeader.innerText = title;
+
+      var eventContent = document.createElement('div');
+      eventContent.classList.add('content');
+      eventContent.innerText = content;
+
+      newEvent.appendChild(eventHeader);
+      newEvent.appendChild(eventContent);
+
+      eventContainer.insertBefore(newEvent, eventContainer.children[0]);
     }
 };
 
 app.initialize();
+app.onDeviceReady();
