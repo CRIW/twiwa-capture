@@ -1,0 +1,19 @@
+{
+    "name": "de.campusradiokiel.twiwa.capture",
+    "version": "1.0.0",
+    "displayName": "twiwaCapture",
+    "cordova": {
+        "platforms": [
+            "android"
+        ],
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "net.coconauts.notification-listener": {}
+        }
+    },
+    "dependencies": {
+        "cordova-android": "~6.2.3",
+        "cordova-plugin-whitelist": "1",
+        "net.coconauts.notification-listener": "https://github.com/coconauts/NotificationListener-cordova"
+    }
+}
